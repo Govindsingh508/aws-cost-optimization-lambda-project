@@ -27,8 +27,9 @@ The generated report is delivered through email using Amazon SNS.
 
 ## Architecture
 
-The project follows a simple serverless architecture:
+The project follows a simple serverless architecture
 
+```text
 EC2 Resources
       │
       ▼
@@ -44,6 +45,7 @@ Amazon SNS
       │
       ▼
 Email Notification
+```
 
 ## AWS Services Used
 
@@ -54,5 +56,19 @@ Email Notification
 | AWS Compute Optimizer | Detects idle resources and estimated savings |
 | Amazon SNS | Sends the cost optimization report through email |
 | IAM | Provides secure permissions for Lambda |
+
+
+## Project Workflow
+
+1. AWS Lambda is triggered manually or on a schedule using Amazon EventBridge.
+2. Lambda scans the AWS account for:
+   - Unattached EBS Volumes
+   - Unused Elastic IP Addresses
+   - User-owned Snapshots
+3. Lambda fetches idle resource recommendations from AWS Compute Optimizer.
+4. Resource details and estimated savings are collected.
+5. A structured cost optimization report is generated.
+6. Amazon SNS sends the report to the configured email address.
+7. The user reviews the report and removes unused resources to reduce AWS costs.
 
 
