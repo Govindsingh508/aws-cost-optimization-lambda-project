@@ -24,3 +24,35 @@ The generated report is delivered through email using Amazon SNS.
 - Sends email notifications using Amazon SNS
 - Displays AWS Region and execution time in the report
 - Includes clear recommendations for each detected resource
+
+## Architecture
+
+The project follows a simple serverless architecture:
+
+EC2 Resources
+      │
+      ▼
+AWS Lambda
+      │
+      ├── EC2 API
+      ├── Compute Optimizer API
+      ├── EBS Snapshots
+      └── Elastic IPs
+      │
+      ▼
+Amazon SNS
+      │
+      ▼
+Email Notification
+
+## AWS Services Used
+
+| Service | Purpose |
+|----------|----------|
+| AWS Lambda | Runs the automation script |
+| Amazon EC2 | Fetches EBS volumes, snapshots and Elastic IPs |
+| AWS Compute Optimizer | Detects idle resources and estimated savings |
+| Amazon SNS | Sends the cost optimization report through email |
+| IAM | Provides secure permissions for Lambda |
+
+
