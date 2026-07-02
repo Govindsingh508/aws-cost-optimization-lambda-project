@@ -104,3 +104,31 @@ aws-cost-optimization-lambda-project/
 | README.md | Main project documentation |
 | LICENSE | Project license |
 | .gitignore | Files ignored by Git |
+
+## Prerequisites
+
+Before using this project, ensure you have:
+
+- AWS Account
+- AWS Lambda
+- Amazon EC2
+- Amazon SNS
+- AWS Compute Optimizer enabled
+- IAM Role with required permissions
+- Python 3.x
+- Boto3 (AWS SDK for Python)
+
+## Required IAM Permissions
+
+The Lambda execution role should have permissions for:
+
+- AmazonEC2ReadOnlyAccess
+- ComputeOptimizerReadOnlyAccess
+- AmazonSNSFullAccess (or publish permission)
+
+
+
+
+
+
+
