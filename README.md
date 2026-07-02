@@ -22,6 +22,7 @@ The generated report is delivered through email using Amazon SNS.
 - Calculates potential monthly savings
 - Generates a structured cost optimization report
 - Sends email notifications using Amazon SNS
+- Supports automatic scheduled execution using Amazon EventBridge
 - Displays AWS Region and execution time in the report
 - Includes clear recommendations for each detected resource
 
@@ -30,21 +31,20 @@ The generated report is delivered through email using Amazon SNS.
 The project follows a simple serverless architecture
 
 ```text
-EC2 Resources
-      │
-      ▼
-AWS Lambda
-      │
-      ├── EC2 API
-      ├── Compute Optimizer API
-      ├── EBS Snapshots
-      └── Elastic IPs
-      │
-      ▼
-Amazon SNS
-      │
-      ▼
-Email Notification
+                 Amazon EventBridge
+                         │
+                         ▼
+                   AWS Lambda
+                         │
+        ┌────────────────┼────────────────┐
+        │                │                │
+        ▼                ▼                ▼
+  Amazon EC2     AWS Compute       Amazon SNS
+                 Optimizer API          │
+        │                               ▼
+        ├── EBS Volumes          Email Notification
+        ├── Elastic IPs
+        └── EBS Snapshots
 ```
 
 ## AWS Services Used
@@ -52,6 +52,7 @@ Email Notification
 | Service | Purpose |
 |----------|----------|
 | AWS Lambda | Runs the automation script |
+| Amazon EventBridge | Automatically triggers the Lambda function on a schedule|
 | Amazon EC2 | Fetches EBS volumes, snapshots and Elastic IPs |
 | AWS Compute Optimizer | Detects idle resources and estimated savings |
 | Amazon SNS | Sends the cost optimization report through email |
@@ -111,6 +112,7 @@ Before using this project, ensure you have:
 
 - AWS Account
 - AWS Lambda
+- Amazon EventBridge
 - Amazon EC2
 - Amazon SNS
 - AWS Compute Optimizer enabled
@@ -154,7 +156,11 @@ Attach the required IAM permissions to the Lambda execution role.
 
 Replace the Topic ARN in `lambda_function.py` with your own SNS Topic ARN.
 
-### 6. Test the Lambda Function
+### 6.Configure Amazon EventBridge
+
+Create an EventBridge rule or schedule to trigger the Lambda function automatically at the desired interval (for example, once every day).
+
+### 7. Test the Lambda Function
 
 Run a test event from the Lambda console.
 
