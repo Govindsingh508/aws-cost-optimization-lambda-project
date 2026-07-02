@@ -4,7 +4,7 @@
 
 The objective of this project is to identify AWS resources that generate unnecessary costs and automatically notify administrators through an email report.
 
-The project scans AWS resources, collects optimization recommendations, and sends a formatted report using Amazon SNS.
+The project is automatically triggered by Amazon EventBridge, scans AWS resources, collects optimization recommendations, and sends a formatted report using Amazon SNS.
 
 ---
 
@@ -12,21 +12,25 @@ The project scans AWS resources, collects optimization recommendations, and send
 
 The Lambda function performs the following steps:
 
-1. Starts Lambda execution.
-2. Creates AWS service clients.
-3. Fetches AWS Compute Optimizer recommendations.
-4. Scans EC2 resources.
-5. Identifies:
+1. Amazon EventBridge triggers the Lambda function.
+2. Lambda starts execution.
+3. Creates AWS service clients.
+4. Fetches AWS Compute Optimizer recommendations.
+5. Scans EC2 resources.
+6. Identifies:
    - Unattached EBS Volumes
    - Unused Elastic IPs
    - User-created Snapshots
-6. Generates a formatted cost optimization report.
-7. Sends the report through Amazon SNS.
-8. Returns the execution summary.
+7. Generates a formatted cost optimization report.
+8. Sends the report through Amazon SNS.
+9. Returns the execution summary.
 
 ---
 
 # AWS Services Used
+
+### Amazon EventBridge
+Automatically triggers the Lambda function based on a scheduled rule.
 
 ### AWS Lambda
 Runs the Python code without managing any servers.
@@ -70,6 +74,7 @@ Possible enhancements include:
 This project demonstrates practical experience with:
 
 - AWS Lambda
+- Amazon EventBridge Scheduling
 - Amazon EC2 APIs
 - AWS Compute Optimizer
 - Amazon SNS
