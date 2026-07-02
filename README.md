@@ -126,6 +126,45 @@ The Lambda execution role should have permissions for:
 - ComputeOptimizerReadOnlyAccess
 - AmazonSNSFullAccess (or publish permission)
 
+## Installation & Setup
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/<your-github-username>/aws-cost-optimization-lambda.git
+```
+
+### 2. Create an SNS Topic
+
+- Create an Amazon SNS Topic.
+- Create an Email Subscription.
+- Confirm the subscription from your email.
+
+### 3. Create an IAM Role
+
+Attach the required IAM permissions to the Lambda execution role.
+
+### 4. Create an AWS Lambda Function
+
+- Runtime: Python 3.x
+- Upload the project source code.
+- Attach the IAM role.
+
+### 5. Update the SNS Topic ARN
+
+Replace the Topic ARN in `lambda_function.py` with your own SNS Topic ARN.
+
+### 6. Test the Lambda Function
+
+Run a test event from the Lambda console.
+
+The function will:
+
+- Scan AWS resources
+- Fetch Compute Optimizer recommendations
+- Generate the report
+- Send the email through SNS
+
 
 
 
