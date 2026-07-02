@@ -165,6 +165,11 @@ The function will:
 - Generate the report
 - Send the email through SNS
 
+  ## Sample Email Output
+
+The Lambda function sends a detailed AWS Cost Optimization report to the subscribed email through Amazon SNS.
+
+![Sample Email Report](screenshots/sample-email-output.png)
 
 
 
