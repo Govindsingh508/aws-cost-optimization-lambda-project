@@ -71,4 +71,36 @@ Email Notification
 6. Amazon SNS sends the report to the configured email address.
 7. The user reviews the report and removes unused resources to reduce AWS costs.
 
+## Project Structure
 
+```text
+aws-cost-optimization-lambda-project/
+│
+├── architecture/
+│   └── README.md
+│
+├── docs/
+│   └── README.md
+│
+├── lambda/
+│   └── lambda_function.py
+│
+├── screenshots/
+│   └── README.md
+│
+├── .gitignore
+├── LICENSE
+└── README.md
+```
+
+### Folder Description
+
+| Folder/File | Purpose |
+|-------------|----------|
+| lambda | Contains the AWS Lambda source code |
+| docs | Project documentation and setup guides |
+| architecture | Architecture diagrams and design documents |
+| screenshots | Screenshots of the project execution |
+| README.md | Main project documentation |
+| LICENSE | Project license |
+| .gitignore | Files ignored by Git |
